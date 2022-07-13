@@ -16,28 +16,136 @@ output:
 ```{r include=FALSE,echo=FALSE}
 require(tigerstats)
 require(tidyverse)
+
+Fish = read.csv("Fish.csv")
+Perch = filter(Fish, Species == "Perch")
+Pike = filter(Fish, Species == "Pike")
+Roach = filter(Fish, Species == "Roach")
 ```
 
 # Predicting Fish Weight
 
+```{r}
+
+pwt =  lm(Weight~ Length1 + Length2 + Length3 + Height, data = Perch)
+summary(pwt)
+```
+
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ Length1+ Length2 + Length3 + Height,
+               data = Perch,
+               nbest = 2,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+regsubsets.out
+```
+
+```{r}
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+```
+
+From this graph, I see that the 2 predictions of weights are length3 and height.    
 
 ## Perch
+```{r}
+
+pwt =  lm(Weight~ Length1 + Length2 + Length3 + Height, data = Perch)
+summary(pwt)
+```
+
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ Length1+ Length2 + Length3 + Height,
+               data = Perch,
+               nbest = 2,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+regsubsets.out
+```
+
+```{r}
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+```
 
 ### Best Models
 
 ### Best Two regressor model
 
+From the graph, the best two regressor model for Perch is lenght3 and Height.    
 
 ## Pike
 
+
+```{r}
+
+pwt =  lm(Weight~ Length1 + Length2 + Length3 + Height, data = Pike)
+summary(pwt)
+```
+
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ Length1+ Length2 + Length3 + Height,
+               data = Pike,
+               nbest = 2,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+regsubsets.out
+```
+
+```{r}
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+```
 ### Best Models
 
 ### Best Two regressor model
+
+From the graph, the best two regressor model for Pike is length2 and length3.    
 
 ## Roach
 
+```{r}
+
+pwt =  lm(Weight~ Length1 + Length2 + Length3 + Height, data = Roach)
+summary(pwt)
+```
+
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ Length1+ Length2 + Length3 + Height,
+               data = Roach,
+               nbest = 2,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+regsubsets.out
+```
+
+```{r}
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+```
+
 ### Best Models
 
 ### Best Two regressor model
 
+From the graph, the best two regressor model is length2 and length3.  
+
 ## Final Summary Statements
+
+When predicting fish weight, it was seen from the table that the 2 predictions were weight and length3.  
+Also, when analyzing the 2 best regressor models for Pearch, it came out to be length3 and weight.  
+For Pike, the 2 best regressor model is length2 and length3.  
+Lastly, for Roach, the 2 best regressor models is length2 and length3. 
+
