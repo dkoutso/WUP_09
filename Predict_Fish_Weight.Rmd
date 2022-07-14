@@ -109,7 +109,7 @@ as.data.frame(summary.out$outmat)
 
 ### Best Two regressor model
 
-From the graph, the best two regressor model for Pike is length2 and length3.    
+From the graph, the best two regressor model for Pike is length1 and length3.    
 
 ## Roach
 
@@ -140,7 +140,7 @@ as.data.frame(summary.out$outmat)
 
 ### Best Two regressor model
 
-From the graph, the best two regressor model is length2 and length3.  
+From the graph, the best two regressor model is length1 and length3.  
 
 ## Final Summary Statements
 
